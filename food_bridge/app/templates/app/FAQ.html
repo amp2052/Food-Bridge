@@ -1,0 +1,73 @@
+
+{% extends 'app/base.html' %}
+
+
+
+{% block content %}
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-5 fw-bold">Frequently Asked Questions</h2>
+      <p class="lead">Have questions? We've got answers to help you better understand our mission and how you can be part of it.</p>
+    </div>
+
+    <div class="accordion" id="faqAccordion">
+      <!-- FAQ 1 -->
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="faqHeading1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+            How does your platform work?
+          </button>
+        </h2>
+        <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            We connect food donors with verified NGOs and charities who can pick up and distribute surplus food to those in need. Everything is managed through our user-friendly dashboard.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="faqHeading2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+            Who can donate food?
+          </button>
+        </h2>
+        <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Anyone — from restaurants and supermarkets to individuals and event organizers. If you have food that’s safe to eat, we can help you share it.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="faqHeading3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+            Is the food safe for consumption?
+          </button>
+        </h2>
+        <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes. We work only with food that meets safety and hygiene guidelines. Our partner NGOs ensure quality checks before distribution.
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="accordion-item mb-3">
+        <h2 class="accordion-header" id="faqHeading4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+            How can I volunteer or contribute?
+          </button>
+        </h2>
+        <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            You can sign up as a volunteer on our website or support us through donations. Every contribution — time, food, or funds — helps us grow our impact.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

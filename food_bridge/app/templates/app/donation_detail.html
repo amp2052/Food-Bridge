@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Donation Details{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-lg">
+    <div class="card-header bg-success text-white">
+      <h4 class="mb-0">Donation Details - {{ donation.event_name }}</h4>
+    </div>
+    <div class="card-body">
+
+      <!-- Summary -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <p><strong>Donor:</strong> 
+            {% if donation.donor %}
+              {{ donation.donor.first_name }} {{ donation.donor.last_name }} 
+              <small class="text-muted">({{ donation.donor.email }})</small>
+            {% else %}
+              <span class="text-danger">Unassigned</span>
+            {% endif %}
+          </p>
+          <p><strong>Food Type:</strong> {{ donation.get_food_type_display }}</p>
+          <p><strong>Quantity:</strong> {{ donation.quantity }} {{ donation.unit }}</p>
+          <p><strong>Pickup Address:</strong> {{ donation.pickup_address }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Pickup Deadline:</strong> {{ donation.pickup_deadline|date:"M d, Y H:i" }}</p>
+          <p><strong>Status:</strong> 
+            {% if donation.status == 'pending' %}
+              <span class="badge bg-warning text-dark">Pending</span>
+            {% elif donation.status == 'accepted' %}
+              <span class="badge bg-info">Accepted</span>
+            {% elif donation.status == 'rejected' %}
+              <span class="badge bg-danger">Rejected</span>
+            {% elif donation.status == 'completed' %}
+              <span class="badge bg-success">Completed</span>
+            {% else %}
+              <span class="badge bg-secondary">Unknown</span>
+            {% endif %}
+          </p>
+          <p><strong>Created At:</strong> {{ donation.timestamp|date:"M d, Y H:i" }}</p>
+        </div>
+      </div>
+
+      <!-- Optional: Print or PDF Export -->
+      <div class="text-end">
+        <button onclick="window.print()" class="btn btn-outline-secondary">
+          <i class="fas fa-print me-1"></i> Print
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

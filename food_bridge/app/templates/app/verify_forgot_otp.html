@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-header bg-info text-white text-center">
+        <h4>Reset Password</h4>
+      </div>
+      <div class="card-body">
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="otp" class="form-label">Enter OTP</label>
+            <input type="text" name="otp" class="form-control" id="otp" required placeholder="Enter 6-digit OTP">
+          </div>
+
+          <div class="mb-3">
+            <label for="new_password1" class="form-label">New Password</label>
+            <input type="password" name="new_password1" class="form-control" id="new_password1" required placeholder="New password">
+          </div>
+
+          <div class="mb-3">
+            <label for="new_password2" class="form-label">Confirm Password</label>
+            <input type="password" name="new_password2" class="form-control" id="new_password2" required placeholder="Confirm password">
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn btn-info text-white">Reset Password</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

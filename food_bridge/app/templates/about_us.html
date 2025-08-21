@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">about_us</li>
+  </ol>
+</nav>
+<section class="py-5" style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/static/images/about-bg.jpg') center/cover no-repeat;">
+    <div class="container text-white">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-bold">About Us</h2>
+            <p class="lead">Connecting donors and NGOs to reduce food waste and fight hunger.</p>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <h3 class="fw-bold">Our Mission</h3>
+                <p>
+                    "Wasting food is like stealing from the poor. Let's bridge the gap between excess and need."
+                    We aim to facilitate seamless food donations from individuals and businesses to NGOs,
+                    ensuring excess food is delivered to those who need it most.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <img src="/static/images/mission.jpg" alt="Our Mission" class="img-fluid rounded shadow">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <h3 class="fw-bold">Our Vision</h3>
+                <p>
+                    To create a sustainable and compassionate community where no food is wasted and no one goes hungry.
+                    We envision a future where every surplus meal finds its way to a person in need — through digital
+                    connectivity, trust, and collective action.
+                </p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="/static/images/vision.jpg" alt="Our Vision" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

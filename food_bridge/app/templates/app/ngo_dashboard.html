@@ -1,0 +1,100 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}NGO Dashboard{% endblock %}
+{% block content %}
+<div class="container mt-3">
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-primary fw-semibold" href="{% url 'ngo_profile' %}">
+      <i class="fas fa-user me-1"></i> Profile
+    </a>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-success fw-semibold" href="{% url 'ngo_history' %}">
+      <i class="fas fa-user me-1"></i> History
+    </a>
+  </div>
+</div>
+
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <!-- Top Welcome -->
+    <div class="mb-4">
+      <h2 class="fw-bold mb-1">
+        Welcome,
+        {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
+        <small class="text-muted">(NGO)</small>
+      </h2>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="card text-white bg-warning shadow">
+          <div class="card-body">
+            <h5 class="card-title">Pending Requests</h5>
+            <p class="card-text fs-4">{{ pending_requests|length }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card text-white bg-success shadow">
+          <div class="card-body">
+            <h5 class="card-title">Accepted Donations</h5>
+            <p class="card-text fs-4">{{ accepted_requests.count }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Available Donations Table -->
+    <h4 class="mb-3">Available Donations</h4>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle bg-white">
+        <thead class="table-success">
+          <tr>
+            <th>Donor</th>
+            <th>Food Type</th>
+            <th>Quantity</th>
+            <th>Location</th>
+            <th>Deadline</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in available_donations %}
+          <tr>
+            <td>
+              {% if item.donor %}
+                {{ item.donor.first_name }} {{ item.donor.last_name }}
+              {% else %}
+                <span class="text-danger">No donor linked</span>
+              {% endif %}
+            </td>
+            <td>{{ item.food_type|capfirst }}</td>
+            <td>{{ item.quantity }} {{ item.unit }}</td>
+            <td>{{ item.pickup_address }}</td>
+            <td>{{ item.pickup_deadline|date:"M d, Y H:i" }}</td>
+            <td>
+              <form method="post" action="{% url 'claim_donation' item.id %}">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-primary">Claim</button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="6" class="text-center">No donations available right now.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+{% endblock content %}

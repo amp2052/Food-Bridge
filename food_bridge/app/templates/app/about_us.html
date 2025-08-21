@@ -1,0 +1,94 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+  </ol>
+</nav>
+
+<section class="py-5" style="background: linear-gradient(rgba(63, 94, 251, 0.65), rgba(252, 70, 107, 0.65))">
+  <div class="container text-white">
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <h2 class="display-4 fw-bold">Who We Are</h2>
+      <p class="lead">Empowering communities by connecting surplus to need — reducing food waste, feeding hope.</p>
+    </div>
+
+    <!-- Mission -->
+    <div class="row mb-5 align-items-center">
+      <div class="col-md-6 col-12 mb-4 mb-md-0">
+        <h3 class="fw-bold">Our Mission</h3>
+        <p>
+          At our core, we believe that no meal should be wasted and no person should go hungry. Our mission is
+          to bridge the gap between abundance and scarcity by creating a platform that links generous donors
+          with NGOs and charities on the frontlines of hunger relief.
+        </p>
+        <p>
+          "Wasting food is like stealing from the poor." We turn this belief into action — transforming surplus
+          into sustenance and compassion into change.
+        </p>
+      </div>
+      <div class="col-md-6 col-12 text-center">
+        <img src="{% static 'images/mission.jpg' %}" alt="Our Mission" class="img-fluid rounded shadow">
+      </div>
+    </div>
+
+    <!-- Vision -->
+    <div class="row mb-5 align-items-center">
+      <div class="col-md-6 col-12 order-md-2 mb-4 mb-md-0">
+        <h3 class="fw-bold">Our Vision</h3>
+        <p>
+          We envision a world where no food goes to waste and every hungry soul is nourished — through
+          technology, community collaboration, and shared humanity.
+        </p>
+        <p>
+          Our platform aspires to be the digital lifeline that transforms surplus into smiles, bringing dignity,
+          health, and hope to every doorstep.
+        </p>
+      </div>
+      <div class="col-md-6 col-12 order-md-1 text-center">
+        <img src="{% static 'images/Vision.jpeg' %}" alt="Our Vision" class="img-fluid rounded shadow">
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <h3 class="fw-bold text-center mb-4">Our Core Values</h3>
+        <div class="row text-center">
+          <div class="col-sm-6 col-md-3 mb-4">
+            <h5 class="fw-bold">Compassion</h5>
+            <p>We serve with heart, guided by empathy for the vulnerable and underserved.</p>
+          </div>
+          <div class="col-sm-6 col-md-3 mb-4">
+            <h5 class="fw-bold">Sustainability</h5>
+            <p>We fight waste by rethinking how we use, share, and redistribute excess resources.</p>
+          </div>
+          <div class="col-sm-6 col-md-3 mb-4">
+            <h5 class="fw-bold">Integrity</h5>
+            <p>We act transparently and responsibly in every step of our mission.</p>
+          </div>
+          <div class="col-sm-6 col-md-3 mb-4">
+            <h5 class="fw-bold">Innovation</h5>
+            <p>We harness technology to solve real-world problems and scale social impact.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact -->
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h3 class="fw-bold mb-4">Our Impact</h3>
+        <p class="lead">Since our inception, we've helped deliver thousands of meals and prevented tons of food from going to waste. But this is just the beginning. With your support, we can do so much more.</p>
+        <a href="{% url 'donor_dashboard' %}" class="btn btn-lg mt-3 text-white" style="background: linear-gradient(90deg, #3f5efb, #fc466b); border: none;">
+          Join the Movement
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

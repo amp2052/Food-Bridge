@@ -1,0 +1,37 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Pending NGO Verification Requests</h2>
+    {% if pending_ngos %}
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>NGO Name</th>
+                <th>Contact Person</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ngo in pending_ngos %}
+            <tr>
+                <td>{{ ngo.ngo_name }}</td>
+                <td>{{ ngo.contact_person_name }}</td>
+                <td>{{ ngo.email }}</td>
+                <td>{{ ngo.phone_number }}</td>
+                <td>{{ ngo.status }}</td>
+                <td>
+                    <a href="{% url 'approve_ngo' ngo.id %}" class="btn btn-success btn-sm">Approve</a>
+                    <a href="{% url 'reject_ngo' ngo.id %}" class="btn btn-danger btn-sm">Reject</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No pending NGO requests.</p>
+    {% endif %}
+</div>
+{% endblock %}

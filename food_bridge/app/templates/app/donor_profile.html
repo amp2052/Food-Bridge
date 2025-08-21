@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<div class="container py-5">
+  <h2>Donor Profile</h2>
+
+  <p><strong>Name:</strong> 
+    {{ user.first_name }} {% if user.last_name %}{{ user.last_name }}{% endif %}
+  </p>
+
+  <p><strong>Username (Email):</strong> {{ user.email }}</p>
+
+  <a href="{% url 'donor_dashboard' %}" class="btn btn-outline-primary mt-4">← Back to Dashboard</a>
+</div>
+{% endblock %}

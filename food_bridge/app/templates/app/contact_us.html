@@ -1,0 +1,60 @@
+{% extends 'app/base.html' %}
+
+
+
+{% block content %}
+
+
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-5 fw-bold">Contact Us</h2>
+      <p class="lead">We’d love to hear from you. Reach out with your questions, ideas, or partnership inquiries.</p>
+    </div>
+
+    <div class="row">
+      <!-- Contact Form -->
+      <div class="col-md-6 mb-4">
+        <form method="post" action="{% url 'contact_us' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Your Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md-6">
+        <div class="mb-4">
+          <h5 class="fw-bold">Email</h5>
+          <p><a href="mailto:support@example.com">support@example.com</a></p>
+        </div>
+        <div class="mb-4">
+          <h5 class="fw-bold">Phone</h5>
+          <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+        </div>
+        <div class="mb-4">
+          <h5 class="fw-bold">Office Location</h5>
+          <p>123 Hope Street<br>Food City, FC 45678<br>United States</p>
+        </div>
+        <div>
+          <h5 class="fw-bold">Follow Us</h5>
+          <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="me-2"><i class="bi bi-twitter"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

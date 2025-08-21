@@ -1,0 +1,69 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <h2 class="fw-bold mb-4">Complete Your NGO Profile</h2>
+
+    <form method="post" enctype="multipart/form-data" class="card p-4 shadow bg-light">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_ngo_name" class="form-label">NGO Name</label>
+            {{ form.ngo_name }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_registration_number" class="form-label">Registration Number</label>
+            {{ form.registration_number }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_contact_person" class="form-label">Contact Person Name</label>
+            {{ form.contact_person }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email Address</label>
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_phone" class="form-label">Phone Number</label>
+            {{ form.phone }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_address" class="form-label">Address</label>
+            {{ form.address }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_ngo_type" class="form-label">Type of NGO</label>
+            {{ form.ngo_type }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_documents" class="form-label">Upload Registration Document</label>
+            {{ form.documents }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_website" class="form-label">Website (Optional)</label>
+            {{ form.website }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_service_areas" class="form-label">Service Areas</label>
+            {{ form.service_areas }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_description" class="form-label">Description</label>
+            {{ form.description }}
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Submit Profile</button>
+    </form>
+</div>
+{% endblock %}

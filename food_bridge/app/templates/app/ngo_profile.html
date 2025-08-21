@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+{% block title %}NGO Profile{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-lg border-0">
+    <div class="card-body">
+      <h2 class="card-title mb-4">NGO Profile</h2>
+
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Name:</strong> {{ ngo_profile.first_name }} {{ ngo_profile.last_name }}</p>
+          <p><strong>Username (Email):</strong> {{ request.user.email }}</p>
+          <p><strong>Address:</strong> {{ngo_profile.address}}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Organization Name:</strong> {{ ngo_profile.organization_name }}</p>
+          <p><strong>Phone:</strong> {{ ngo_profile.phone_number }}</p>
+          <p><strong>Registered On:</strong> {{ request.user.date_joined|date:"M d, Y" }}</p>
+        </div>
+      </div>
+
+      <a href="{% url 'ngo_dashboard' %}" class="btn btn-secondary">← Back to Dashboard</a>
+      <a href="{% url 'edit_ngo_profile' %}" class="btn btn-outline-primary">Edit Profile</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

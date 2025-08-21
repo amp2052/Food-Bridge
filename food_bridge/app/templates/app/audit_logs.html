@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+{% block title %}Audit Logs{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Audit Logs</h2>
+    <ul class="list-group mt-3">
+        {% for log in logs %}
+        <li class="list-group-item">
+            <strong>{{ log.timestamp }}</strong> — {{ log.action }}
+        </li>
+        {% empty %}
+        <li class="list-group-item">No logs available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

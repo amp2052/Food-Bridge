@@ -1,0 +1,194 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% comment %} {% block title %}Admin Dashboard{% endblock %} {% endcomment %}
+{% block navbar %}
+<!-- ✅ Donor Navbar -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Food Bridge</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#donorNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="donorNavbar">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item ms-2">
+          <a href="{% url 'logout' %}" class="btn btn-sm btn-danger">
+            <i class="fas fa-sign-out-alt me-1"></i> Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+{% endblock navbar %}
+
+{% block content %}
+<style>
+  .video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* dark overlay for contrast */
+  }
+</style>
+<video autoplay muted loop playsinline class="video-bg">
+  <source src="{% static 'videos/2.mp4' %}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<div class="overlay"></div>
+<h1 class="mb-4 text-center p-3 rounded" style="color: white; background-color: rgba(0, 0, 0, 0.5);">
+    Admin Dashboard
+</h1>
+<div class="d-flex justify-content-end mb-3">
+  <a href="{% url 'admin_pdf_report' %}" class="btn btn-danger">
+    <i class="bi bi-printer"></i> Print / Download PDF
+  </a>
+</div>
+
+
+<!-- Filters Form -->
+<form method="get" class="row g-3 mb-3">
+  <div class="col-md-4">
+    <label class="form-label" style="color: white;">Food Type</label>
+    <select class="form-select" name="food_type">
+      <option value="">-- All --</option>
+      <option value="veg" {% if selected_food_type == 'veg' %}selected{% endif %}>Veg</option>
+      <option value="nonveg" {% if selected_food_type == 'nonveg' %}selected{% endif %}>Non-Veg</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label class="form-label "style="color: white;">Location</label>
+    <input class="form-control" type="text" name="location" value="{{ selected_location }}">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label"style="color: white;">Start Date</label>
+    <input class="form-control" type="text" name="start_date" placeholder="mm/dd/yyyy" value="{{ start_date }}">
+  </div>
+  <!-- <div class="col-md-3">
+    <label class="form-label">End Date</label>
+    <input class="form-control" type="date" name="end_date" value="{{ end_date }}">
+  </div> -->
+  <div class="col-md-12">
+    <button type="submit" class="btn btn-primary">Apply Filters</button>
+  </div>
+</form>
+
+<!-- Dashboard Stats -->
+<div class="row mb-3">
+  <div class="col-md-4">
+    <div class="card text-bg-success mb-3 shadow">
+      <div class="card-body">
+        <h5 class="card-title">Total Food Saved</h5>
+        <p class="card-text">{{ total_food_saved }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-info mb-3 shadow">
+      <div class="card-body">
+        <h5 class="card-title">Total NGOs</h5>
+        <p class="card-text">{{ total_ngos }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-warning mb-3 shadow">
+      <div class="card-body">
+        <h5 class="card-title">Total Food Posts</h5>
+        <p class="card-text">{{ total_food_posts }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-md-3">
+    <div class="card text-bg-primary mb-3 shadow">
+      <div class="card-body">
+        <h5 class="card-title">Total Donations</h5>
+        <p class="card-text">₹{{ total_amount_donated }}</p>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<!-- Tables Section -->
+<div class="d-flex justify-content-between align-items-center mb-2" style="color: white;">
+  <h3>Recent Food Donations</h3>
+  <a href="{% url 'all_food_posts' %}" class="btn btn-primary btn-sm">View All</a>
+</div>
+<table class="table table-striped shadow-sm">
+  <thead class="table-dark">
+    <tr>
+      <th>Event Name</th>
+      <th>Donor</th>
+      <th>Food Type</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th>Pickup Address</th>
+      <th>Pickup Deadline</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in recent_food_posts %}
+    <tr>
+      <td>{{ post.event_name }}</td>
+      <td>{{ post.donor.email }}</td>
+      <td>{{ post.get_food_type_display }}</td>
+      <td>{{ post.quantity }}</td>
+      <td>{{ post.unit }}</td>
+      <td>{{ post.pickup_address }}</td>
+      <td>{{ post.pickup_deadline|date:"M d, Y H:i" }}</td>
+      <td>{{ post.status }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="8">No food donations found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between align-items-center mb-2" style="color: white;">
+  <h3>Recent Deliveries</h3>
+  <a href="{% url 'all_deliveries' %}" class="btn btn-primary btn-sm">View All</a>
+</div>
+<table class="table table-striped shadow-sm">
+  <thead class="table-dark">
+    <tr>
+      <th>Food</th>
+      <th>NGO</th>
+      <th>Status</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for delivery in recent_deliveries %}
+    <tr>
+      <td>{{ delivery.donation.event_name }}</td>
+      <td>{{ delivery.ngo.email }}</td>
+      <td>{{ delivery.status }}</td>
+      <td>{{ delivery.timestamp|date:"M d, Y H:i" }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No deliveries found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  
+{% endblock %}

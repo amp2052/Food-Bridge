@@ -1,0 +1,279 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Bridge | Connecting Donors & NGOs</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+.hover-move-up {
+  transition: transform 0.3s ease;
+}
+
+.hover-move-up:hover {
+  transform: translateY(-20px);
+}
+</style>
+<style>
+.testimonials-section {
+  background: url('/static/images/7.png') no-repeat center center;
+  background-size: cover;
+  min-height: 200px;
+}
+
+.testimonials-section .overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.testimonials-section .container {
+  z-index: 2;
+}
+.welcome-video {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-video {
+  position: absolute;
+  top: 50%; left: 50%;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+.welcome-video .container {
+  z-index: 2;
+}
+
+</style>
+
+</head>
+<body>
+
+  <!-- <header class="bg-light text-center p-5">
+      <h5 class="" ><span style="background-color: pink;">WE MAKE IT EASY TO</span></h5>
+      <h3 class="">Find, Secure and Deliver Food</h3>
+      <h1 class="display-4">Bridging Food Donors & NGOs</h1>
+      <p class="lead">Donate surplus food and help feed those in need.</p>
+      <p class="lead">We are a non-profit enabling the exchange of excess food from the food industry to those who need it most</p>
+      <a href="{% url 'register' %}" class="btn btn-success btn-lg">Get Started/ Register</a>
+      <a href="{% url 'login' %}" class="btn btn-outline-success btn-lg">Login</a>
+  </header> -->
+<section class="welcome-video position-relative text-white text-center">
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="{% static 'videos/1.mp4' %}" type="video/mp4">
+    Sorry, your browser doesn’t support embedded videos.
+  </video>
+
+  <!-- Dark Overlay -->
+  <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+  <!-- Foreground Content -->
+  <div class="container position-relative py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <h2 class="fw-bold mb-4 text-white">Welcome to <span class="text-success">Food Bridge</span></h2>
+        <p class="fs-5 text-white">
+          <strong>Food Bridge</strong> is a tech-powered initiative that connects surplus food from donors to those who need it most.
+        </p>
+        <p class="fs-5 text-white">
+          With over <strong>189.2 million undernourished people</strong> in India alone, we knew ending hunger completely would be a monumental task.
+          But we chose to take a small, impactful step—bridging the gap between food excess and food scarcity.
+        </p>
+        <p class="fs-5 text-white">
+          <strong>Food Bridge</strong> started in city  <strong>pune</strong> across India. 
+          Our mission is to ensure that perfectly edible food never goes to waste and instead reaches hungry mouths in time.
+        </p>
+        <p class="fs-5 text-white">
+          From weddings and corporate events to restaurants and home gatherings—food often remains unused and ends up being discarded. 
+          <strong>Food Bridge</strong> helps you make a better choice: donate that food with just a few clicks and let it nourish someone in need.
+        </p>
+        <p class="fs-5 text-white">
+          Join us today in fighting hunger and food waste. <strong>Your small act of kindness can mean the world to someone else.</strong>
+        </p>
+        <a href="{% url 'register' %}" class="btn btn-success btn-lg mt-3 me-2">Get Started / Register</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg mt-3">Login</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <section class="container text-center my-5">
+    <h1 class="mb-5">How It Works</h1>
+    <div class="row">
+        <!-- Donors Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow">
+                <img src="{% static 'images/1.png' %}" class="card-img-top" alt="For Donors">
+                <div class="card-body">
+                    <h5 class="card-title">For Donors</h5>
+                    <p class="card-text">Farms, restaurants, cafeterias, hotels, stadiums, and grocery stores post excess food in under a minute on the Waste No Food app.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NGOs Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow">
+                <img src="{% static 'images/2.png' %}" class="card-img-top" alt="For NGOs">
+                <div class="card-body">
+                    <h5 class="card-title">For NGOs</h5>
+                    <p class="card-text">Verified charities are instantly notified of food donations and can claim those they can use to feed people in need..</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow">
+                <img src="{% static 'images/3.png' %}" class="card-img-top" alt="Our Impact">
+                <div class="card-body">
+                    <h5 class="card-title">Our Impact</h5>
+                    <p class="card-text">Once the food is claimed, a charity or group of volunteers picks it up and shares it with hungry individuals..</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+<section class="container text-center my-5">
+    <h3><span style="background-color: pink;">FOOD FACTS</span></h3>
+    <h1 class="mb-5">A Solvable Problem</h1>
+    <p class="mb-5">Service organizations want access to excess food, but there are barriers — locating the excess food, <br>establishing their credentials, and efficiently deploying resources to transport food. Waste No Food breaks down these barriers.</p>
+    
+
+    <div class="row">
+        <!-- Donors Card -->
+        <div class="col-md-4 mb-4 hover-move-up">
+            <div class="card h-100 border-0 shadow">
+                <div class="mb-3">
+                    <i class="fas fa-apple-alt fa-3x text-success"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Raw Food</h5>
+                    <p class="card-text">40% of all food is thrown away or plowed over. In India, 100 billion.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NGOs Card -->
+        <div class="col-md-4 mb-4 hover-move-up">
+            <div class="card h-100 border-0 shadow">
+ <div class="mb-3">
+      <i class="fas fa-bread-slice fa-3x text-warning"></i>
+    </div>                <div class="card-body">
+                    <h5 class="card-title">Prepared Food</h5>
+                    <p class="card-text">In India alone, over 5 billion pounds of prepared food is thrown away every.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact Card -->
+        <div class="col-md-4 mb-4 hover-move-up">
+            <div class="card h-100 border-0 shadow">
+<div class="mb-3 text-danger fs-2">
+  <i class="fas fa-user me-2"></i>
+  <i class="fas fa-utensils"></i>
+</div>
+                <div class="card-body">
+                    <h5 class="card-title">Hunger</h5>
+                    <p class="card-text">If only one-third of India excess food were diverted, it would resolve the hunger.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+ 
+    <section class="testimonials-section text-white text-center py-5 position-relative">
+  <!-- Overlay -->
+  <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+
+  <!-- Content -->
+  <div class="container position-relative">
+    <h2 class="mb-3 fw-bold">TESTIMONIALS</h2>
+    <h1 class="mb-5">What Our Users Are Saying…</h4>
+
+    <div class="row g-4">
+      <!-- Testimonial 1 -->
+      <div class="col-md-4">
+        <div class="card bg-transparent border-0 h-100 text-white">
+          <div class="card-body">
+            <p class="fst-italic">"Plumed Horse is thrilled to partner with Waste No Food for the distribution of our artisanal & locally sourced surplus products."</p>
+            <h6 class="fw-bold mt-4 mb-0">Josh Weeks</h6>
+            <small>General Manager, Plumed Horse</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="col-md-4">
+        <div class="card bg-transparent border-0 h-100 text-white">
+          <div class="card-body">
+            <p class="fst-italic">"Dio Deka is pleased to be the first donor to Waste No Food’s worthy cause. We are also happy to see it being adopted by many other restaurants."</p>
+            <h6 class="fw-bold mt-4 mb-0">Sakis Platis</h6>
+            <small>Partner at Dio Deka</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="col-md-4">
+        <div class="card bg-transparent border-0 h-100 text-white">
+          <div class="card-body">
+            <p class="fst-italic">"Manresa is happy to be associated with Waste No Food and its mission. We are glad to help the program continue to grow."</p>
+            <h6 class="fw-bold mt-4 mb-0">David Kinch</h6>
+            <small>James Beard Award-winning Chef, Owner of Manresa</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ <!-- <section class="container text-center my-5">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>For Donors</h3>
+                <p>Register to donate extra food and reduce waste.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>For NGOs</h3>
+                <p>Register, get verified, and receive donations to distribute.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Our Impact</h3>
+                <p>Join our mission to eliminate hunger and food wastage.</p>
+            </div>
+        </div>
+    </section>-->
+
+    
+    <!-- <footer class="bg-success text-white text-center py-3"> 
+        &copy; 2025 Food Bridge. All Rights Reserved.
+    </footer> -->
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
+{% endblock %}

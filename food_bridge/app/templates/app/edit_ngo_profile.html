@@ -1,0 +1,73 @@
+{% extends 'app/base.html' %}
+{% block title %}Edit NGO Profile{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+          <h2 class="text-center text-primary mb-5 fw-bold">Edit NGO Profile</h2>
+
+          <form method="POST" novalidate>
+            {% csrf_token %}
+
+            <!-- User Info Section -->
+            <div class="mb-5">
+              <h5 class="text-secondary fw-semibold mb-3">
+                <i class="fas fa-user text-purple me-2"></i> User Info
+              </h5>
+
+              <div class="mb-3">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control" value="{{ user_form.email.value }}" readonly>
+              </div>
+            </div>
+
+            <!-- NGO Info Section -->
+            <div class="mb-4">
+              <h5 class="text-secondary fw-semibold mb-3">
+                <i class="fas fa-building text-info me-2"></i> NGO Info
+              </h5>
+
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">First name</label>
+                  {{ profile_form.first_name }}
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Last name</label>
+                  {{ profile_form.last_name }}
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Organization name</label>
+                  {{ profile_form.organization_name }}
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Phone number</label>
+                  {{ profile_form.phone_number }}
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Address</label>
+                  {{ profile_form.address }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between mt-4">
+              <a href="{% url 'ngo_profile' %}" class="btn btn-outline-danger px-4">
+                <i class="fas fa-times me-1"></i> Cancel
+              </a>
+              <button type="submit" class="btn btn-primary px-4">
+                <i class="fas fa-save me-1"></i> Save Changes
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

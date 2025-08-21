@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% block title %}System Statistics{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2>System Statistics</h2>
+    <ul class="list-group mt-3">
+        <li class="list-group-item">Total Users: <strong>{{ stats.total_users }}</strong></li>
+        <li class="list-group-item">Total Donations: <strong>{{ stats.total_donations }}</strong></li>
+        <li class="list-group-item">Total Campaigns: <strong>{{ stats.total_campaigns }}</strong></li>
+    </ul>
+</div>
+{% endblock %}

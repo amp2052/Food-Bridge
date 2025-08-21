@@ -1,0 +1,21 @@
+<!-- templates/navbar_ngo.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+  <a class="navbar-brand fw-bold" href="{% url 'ngo_dashboard' %}">FoodBridge (NGO)</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ngoNavbar" aria-controls="ngoNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="ngoNavbar">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ngo_dashboard' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ngo_profile' %}">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-danger" href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
